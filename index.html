@@ -21,7 +21,7 @@
 		var urlfeat = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/0";
 		var urlfeat1 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/1";
 		var urlfeat2 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2";
-		var urlfeat3 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/3";
+		
 
 		require(["esri/map",
 			"esri/layers/ArcGISTiledMapServiceLayer",
@@ -34,23 +34,32 @@
 		    map = new Map("mapDiv", {
 		    	center: [-56.049, 38.485],
 		    	zoom: 3,
-		    	//basemap: "topo",
+		    	basemap: "gray",
 		    	isPanArrows: true
 		  	});
 
-		    var tiledLayer = new ArcGISTiledMapServiceLayer(urlTiledService);
 		    
-		    var featLayer0 = new FeatureLayer(urlfeat);
-		    var featLayer1 = new FeatureLayer(urlfeat1);
-		    var featLayer2 = new FeatureLayer(urlfeat2);
-		    var featLayer3 = new FeatureLayer(urlfeat3);
+		    featLayer0 = new FeatureLayer(urlfeat,{
+		    	mode: FeatureLayer.MODE_ONDEMAND,
+		    	opacity: 0.5
+		    });
+		    //var featLayer1 = new FeatureLayer(urlfeat1);
+		    /*var featLayer2 = new FeatureLayer(urlfeat2,
+		    	{
+		    		maxAllowableOffset: 1000000
+		    	});
+		    ,
+		    	{
+		    		//maxAllowableOffset: 5000,
+		    		autoGeneralize: false
+		    	});*/
 
-		    map.addLayer(tiledLayer);
+		    //map.addLayer(tiledLayer);
 		    
 
-		    map.addLayer(featLayer3);
-			map.addLayer(featLayer2);
-		    map.addLayer(featLayer1);
+		    //map.addLayer(featLayer3);
+			//map.addLayer(featLayer2);
+		    //map.addLayer(featLayer1);
 		    map.addLayer(featLayer0);
 	  });
 	</script>
